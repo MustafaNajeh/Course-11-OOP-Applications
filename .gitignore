@@ -1,0 +1,28 @@
+# ==========================================
+# Visual Studio IDE Ignore Rules
+# ==========================================
+
+.vs/
+
+Debug/
+Release/
+x64/
+x86/
+
+*.sdf
+*.suo
+*.opensdf
+*.VC.db
+*.VC.opendb
+
+*.log
+*.tlog
+*.lastbuildstate
+*.unsuccessfulbuild
+*.idb
+*.pdb
+*.ilk
+*.exe
+*.vcxproj.user
+*.vcxproj.filters
+

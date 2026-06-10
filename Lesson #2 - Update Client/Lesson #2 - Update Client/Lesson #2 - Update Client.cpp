@@ -2,7 +2,7 @@
 #include "clsBankClient.h"
 #include "clsInputValidate.h"
 
-clsBankClient ReadUpdate(clsBankClient Client) {
+clsBankClient ReadUpdate(clsBankClient& Client) {
 
     cout << "Enter FirstName : ";
     Client.FirstName = clsInputValidate::ReadString();

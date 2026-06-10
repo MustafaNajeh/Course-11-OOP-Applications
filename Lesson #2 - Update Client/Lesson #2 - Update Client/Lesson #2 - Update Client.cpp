@@ -2,7 +2,7 @@
 #include "clsBankClient.h"
 #include "clsInputValidate.h"
 
-clsBankClient ReadUpdate(clsBankClient& Client) {
+void ReadUpdate(clsBankClient& Client) {
 
     cout << "Enter FirstName : ";
     Client.FirstName = clsInputValidate::ReadString();
@@ -17,7 +17,6 @@ clsBankClient ReadUpdate(clsBankClient& Client) {
     cout << "Enter AccountBalance : ";
     Client.AccountBalance = clsInputValidate::ReadDoubleNumber();
 
-    return Client;
 }
 
 void UpdateClient() {
@@ -40,7 +39,7 @@ void UpdateClient() {
     cout << "\nUpdate Info";
     cout << "\n_________________\n";
 
-    Client = ReadUpdate(Client);
+    ReadUpdate(Client);
 
     clsBankClient::enUpdateClient SaveResult;
 
@@ -52,12 +51,10 @@ void UpdateClient() {
     case clsBankClient::SussccesUpdate :
         Client.Print();
         cout << "\nUpdate Sussfuly";
-
+        break;
     case clsBankClient::FieldUpdate:
         cout << "Update Fild\n";
-
-
-
+        break;
     }
 
 

@@ -21,8 +21,8 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{4e5097c0-755b-403f-ae93-c60bf9f0a302}</ProjectGuid>
-    <RootNamespace>Lesson4DeleteClient</RootNamespace>
+    <ProjectGuid>{bc6ff0bc-dcc3-4a31-842a-701d877a0406}</ProjectGuid>
+    <RootNamespace>Lesson10DeleteClientScreen</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -123,7 +123,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Lesson #4 - Delete Client.cpp" />
+    <ClCompile Include="Lesson 10 - Delete Client Screen.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="clsShowDeleteClientScreen.h" />

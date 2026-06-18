@@ -123,10 +123,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="clsUsersListScreen.cpp" />
     <ClCompile Include="Lesson - 16 Total Balances List.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="clsUser.h" />
+    <ClInclude Include="clsUsersListScreen.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

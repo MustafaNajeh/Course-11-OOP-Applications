@@ -37,17 +37,7 @@ static void _ReadUser(clsUser& User) {
 
 int main() {
 
-	//clsUser User = clsUser::FindUser("A100");
- //   _PrintClient(User);
-
-    /*clsUser User1 = clsUser::GetAddNewUserObject("A11");
-    _ReadUser(User1);
-
-    User1.Save();
-    _PrintClient(User1);*/
-
-    clsUser Majud = clsUser::FindUser("A11");
-    Majud.Delete();
+    clsMainMenueScreen::MainMenueScreen();
 
 	system("pause>0");
 }

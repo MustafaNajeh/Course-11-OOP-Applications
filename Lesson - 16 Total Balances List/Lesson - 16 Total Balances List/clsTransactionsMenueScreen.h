@@ -86,6 +86,10 @@ class clsTransactionsMenueScreen : protected clsScreen
 public:
 	static void TransactionsMenueScreen() {
 
+		if (!CheckAccessRights(clsUser::CanShowTransactionsMenue)) {
+			return;
+		}
+
 		_HedarScreen("Transactions Menue");
 
 

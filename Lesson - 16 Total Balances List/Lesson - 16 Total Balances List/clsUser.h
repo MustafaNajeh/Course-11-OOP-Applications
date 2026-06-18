@@ -302,6 +302,20 @@ public:
 
 	}
 
+	bool CheckAccessPermissions(ePermission Permissions) {
+
+		if (this->Permissions == ePermission::FullAccess) {
+			return true;
+		}
+
+		else if ((this->Permissions & Permissions) == Permissions) {
+			return true;
+		}
+
+		else {
+			return false;
+		}
+	}
 	
 };
 

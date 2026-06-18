@@ -44,6 +44,11 @@ class clsShowUpdateClientScreen : protected clsScreen
 
 public :
 	static void ShowUpdateClientScreen() {
+
+        if (!CheckAccessRights(clsUser::CanUpdateClient)) {
+            return;
+        }
+
 		_HedarScreen("Update Client Screen");
 
 

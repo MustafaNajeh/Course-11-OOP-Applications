@@ -29,6 +29,10 @@ public:
 
    static void ShowDeleteClientScreen() {
 
+       if (!CheckAccessRights(clsUser::CanDeleteClient)) {
+           return;
+       }
+
        _HedarScreen("Delete Client Screen");
         string AccountNumber = "";
         cout << "Please Enter Account Number\n";

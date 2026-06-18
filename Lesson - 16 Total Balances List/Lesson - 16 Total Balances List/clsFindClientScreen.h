@@ -27,6 +27,11 @@ class clsFindClientScreen : protected clsScreen
 
 public :
 	static void ShowFindClientScreen() {
+
+        if (!CheckAccessRights(clsUser::CanFindClient)) {
+            return;
+        }
+
 		_HedarScreen("Find Client Screen");
 
 

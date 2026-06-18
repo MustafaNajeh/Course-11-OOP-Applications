@@ -104,6 +104,11 @@ class clsManageUserScreen : protected clsScreen
 
 public:
 	static void ShowManageUserScreen() {
+
+		if (!CheckAccessRights(clsUser::CanMangeUsers)) {
+			return;
+		}
+
 		_HedarScreen("Manage User Screen");
 
 		cout << clsUtil::Tabs(5) << "===============================================\n";

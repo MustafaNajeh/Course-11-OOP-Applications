@@ -43,6 +43,11 @@ class clsAddNewClient : protected clsScreen
 public:
 
 	static void  ShowAddNewClientScreen() {
+
+        if (!CheckAccessRights(clsUser::CanAddNewClient)) {
+            return;
+        }
+
 		_HedarScreen("Add New Client");
 
         string AccountNumber = "";

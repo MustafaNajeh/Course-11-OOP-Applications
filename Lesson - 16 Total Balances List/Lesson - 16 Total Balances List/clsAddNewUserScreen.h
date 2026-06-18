@@ -11,14 +11,14 @@ class clsAddNewUserScreen : protected clsScreen
 
 		cout << "\nInfo";
 		cout << "\n______________________________";
-		cout << "\nUserName        : " << User.UserName();
-		cout << "\nPassword        : " << User.Password;
+		cout << "\nUserName       : " << User.UserName();
+		cout << "\nPassword       : " << User.Password;
 		cout << "\nFirstName      : " << User.FirstName;
 		cout << "\nLastName       : " << User.LastName;
 		cout << "\nFullName       : " << User.FullName();
 		cout << "\nEmail          : " << User.Email;
 		cout << "\nPhone          : " << User.Phone;
-		cout << "\nPermissions : " << User.Permissions;
+		cout << "\nPermissions    : " << User.Permissions;
 		cout << "\n______________________________";
     }
 
@@ -132,7 +132,7 @@ public:
         _HedarScreen("Add New User");
 
         string UserName = "";
-        cout << "Please Enter Account Number\n";
+        cout << "Please Enter User Name\n";
         UserName = clsInputValidate::ReadString();
 
         while (clsUser::IsUserExist(UserName)) {

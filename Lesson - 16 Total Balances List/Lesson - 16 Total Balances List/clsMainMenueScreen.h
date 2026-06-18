@@ -10,6 +10,8 @@
 #include "clsFindClientScreen.h"
 #include "clsTransactionsMenueScreen.h"
 #include "clsManageUserScreen.h"
+#include "GlobalObject.h"
+//#include "clsLoginScreen.h"
 using namespace std;
 
 class clsMainMenueScreen : protected clsScreen
@@ -84,8 +86,10 @@ private:
 		clsManageUserScreen::ShowManageUserScreen();
 	}
 
-	static void _Login() {
-		cout << "Login Scrren Will be here ...\n";
+	static void _LoginOut() {
+
+		//cout << "Login Scrren Will be here ...\n";
+		CurrentObject = clsUser::FindUser("", "");
 
 	}
 
@@ -132,8 +136,8 @@ private:
 			break;
 		case enMainMenue::LogOut:
 			system("cls");
-			_Login();
-			_BackToMainMenueScreen();
+			_LoginOut();
+			//clsLoginScreen::ShowLoginScreen();
 			break;
 		}
 

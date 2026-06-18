@@ -137,7 +137,6 @@ private:
 		case enMainMenue::LogOut:
 			system("cls");
 			_LoginOut();
-			//clsLoginScreen::ShowLoginScreen();
 			break;
 		}
 

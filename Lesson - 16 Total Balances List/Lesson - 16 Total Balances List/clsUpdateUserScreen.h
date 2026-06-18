@@ -1,13 +1,12 @@
 #pragma once
 #include <iostream>
-#include "clsScreen.h"
-#include "clsUser.h"
-#include "clsInputValidate.h"
 using namespace std;
-class clsAddNewUserScreen : protected clsScreen
+#include "clsScreen.h"
+#include "clsInputValidate.h"
+#include "clsUser.h"
+class clsUpdateUserScreen : protected clsScreen
 {
-
-    static void _PrintUser(clsUser User) {
+	static void _PrintUser(clsUser User) {
 
 		cout << "\nInfo";
 		cout << "\n______________________________";
@@ -20,24 +19,24 @@ class clsAddNewUserScreen : protected clsScreen
 		cout << "\nPhone          : " << User.Phone;
 		cout << "\nPermissions : " << User.Permissions;
 		cout << "\n______________________________";
-    }
+	}
 
-    static void _ReadUserInfo(clsUser& User) {
+	static void _ReadUserInfo(clsUser& User) {
 
-        cout << "Enter FirstName : ";
-        User.FirstName = clsInputValidate::ReadString();
-        cout << "Enter LastName : ";
-        User.LastName = clsInputValidate::ReadString();
-        cout << "Enter Email : ";
-        User.Email = clsInputValidate::ReadString();
-        cout << "Enter Phone : ";
-        User.Phone = clsInputValidate::ReadString();
-        cout << "Enter Password : ";
-        User.Password = clsInputValidate::ReadString();
-  
-        User.Permissions = _ReadPermissions();
+		cout << "Enter FirstName : ";
+		User.FirstName = clsInputValidate::ReadString();
+		cout << "Enter LastName : ";
+		User.LastName = clsInputValidate::ReadString();
+		cout << "Enter Email : ";
+		User.Email = clsInputValidate::ReadString();
+		cout << "Enter Phone : ";
+		User.Phone = clsInputValidate::ReadString();
+		cout << "Enter Password : ";
+		User.Password = clsInputValidate::ReadString();
 
-    }
+		User.Permissions = _ReadPermissions();
+
+	}
 
 	static int _ReadPermissions() {
 
@@ -125,49 +124,58 @@ class clsAddNewUserScreen : protected clsScreen
 		return Permissions;
 	}
 
-
 public:
- 
-    static void  ShowAddNewClientScreen() {
-        _HedarScreen("Add New User");
-
-        string UserName = "";
-        cout << "Please Enter Account Number\n";
-        UserName = clsInputValidate::ReadString();
-
-        while (clsUser::IsUserExist(UserName)) {
-			
-            cout << "Sory, your AccountNumber is Exsist enter Agin\n";
-            UserName = clsInputValidate::ReadString();
-
-        }
-
-		clsUser User = clsUser::GetAddNewUserObject(UserName);
+	static void ShowUpdateUserScreen() {
+		_HedarScreen("Update User Screen");
 
 
-        _ReadUserInfo(User);
+		string UserName = "";
+		cout << "Please Enter Account Number\n";
+		UserName = clsInputValidate::ReadString();
 
-		clsUser::enSaveClient SaveResult;
+		while (!clsUser::IsUserExist(UserName)) {
 
-        SaveResult = User.Save();
+			cout << "Sory, your AccountNumber is Not Exsist enter Agin\n";
+			UserName = clsInputValidate::ReadString();
+
+		}
+
+		clsUser User = clsUser::FindUser(UserName);
+		_PrintUser(User);
+
+		cout << "\n_________________\n";
+		cout << "\nUpdate Info";
+		cout << "\n_________________\n";
+
+		char Answer = 'n';
+		cout << "\ndo you want really update User y/n? \n";
+		cin >> Answer;
+		if (Answer == 'y' || Answer == 'Y') {
+
+			_ReadUserInfo(User);
+
+			clsUser::enSaveClient SaveResult;
+
+			SaveResult = User.Save();
 
 
-        switch (SaveResult) {
+			switch (SaveResult) {
 
-        case clsUser::SussccesChanges:
+			case clsUser::SussccesChanges:
+				_PrintUser(User);
+				cout << "\nUpdate Sussfuly";
+				break;
+			case clsUser::FaildChanges:
+				cout << "Update Fild\n";
+				break;
+			}
+		}
 
-            cout << "\nAdd New User Sussfuly";
-			_PrintUser(User);
-            break;
-        case clsUser::FaildChanges:
-            cout << "\nAdd New User Fild\n";
-            break;
-        case clsUser::FaildAddNewClientExists:
-            cout << "\nFaild Add New User Because Exists";
-            break;
-        }
+		else {
+			cout << "\nUpdate cancled.\n";
+		}
 
-
-    }
+	}
 
 };
+

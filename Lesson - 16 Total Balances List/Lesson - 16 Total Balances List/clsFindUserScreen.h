@@ -1,0 +1,59 @@
+#pragma once
+#include <iostream>
+#include "clsScreen.h"
+#include "clsUser.h"
+#include "clsInputValidate.h"
+using namespace std;
+class clsFindUserScreen : protected clsScreen
+{
+
+	static void _PrintUser(clsUser User) {
+
+		cout << "\nInfo";
+		cout << "\n______________________________";
+		cout << "\nUserName        : " << User.UserName();
+		cout << "\nPassword        : " << User.Password;
+		cout << "\nFirstName      : " << User.FirstName;
+		cout << "\nLastName       : " << User.LastName;
+		cout << "\nFullName       : " << User.FullName();
+		cout << "\nEmail          : " << User.Email;
+		cout << "\nPhone          : " << User.Phone;
+		cout << "\nPermissions : " << User.Permissions;
+		cout << "\n______________________________";
+	}
+
+public :
+	static void ShowFindUserScreen() {
+		_HedarScreen("Find Client Screen");
+
+
+		string AccountNumber = "";
+		cout << "Please Enter User Name\n";
+		AccountNumber = clsInputValidate::ReadString();
+
+		while (!clsUser::IsUserExist(AccountNumber)) {
+
+			cout << "Sory, your User Name is Not Exsist enter Agin\n";
+			AccountNumber = clsInputValidate::ReadString();
+
+		}
+
+		clsUser Client = clsUser::FindUser(AccountNumber);
+
+		if (!Client.IsEmpty()) {
+
+			cout << "\nFind User Sussccfuly.\n";
+
+
+		}
+		else {
+			cout << "\nFind User Faild.\n";
+		}
+		_PrintUser(Client);
+
+
+
+	}
+
+};
+

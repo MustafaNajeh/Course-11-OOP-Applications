@@ -7,6 +7,7 @@ using namespace std;
 #include "clsAddNewUserScreen.h"
 #include "clsDeleteUserScreen.h"
 #include "clsUpdateUserScreen.h"
+#include "clsFindUserScreen.h"
 class clsManageUserScreen : protected clsScreen
 {
 	enum enUesrsMenue {
@@ -53,8 +54,8 @@ class clsManageUserScreen : protected clsScreen
 		clsUpdateUserScreen::ShowUpdateUserScreen();
 	}
 	static void _ShowFindUserScreen() {
-		cout << "Show User Find Screen Will be here ...\n";
-
+		//cout << "Show User Find Screen Will be here ...\n";
+		clsFindUserScreen::ShowFindUserScreen();
 	}
 
 	static void _PerformUserMenue(enUesrsMenue UserMenue) {

@@ -40,7 +40,7 @@ private:
 		sRecord += User.LastName + delim;
 		sRecord += User.Email + delim;
 		sRecord += User.Phone + delim;
-		sRecord += User.AccountNumber() + delim;
+		sRecord += User.UserName() + delim;
 		sRecord += User.Password + delim;
 		sRecord += to_string(User._Permissions);
 
@@ -117,7 +117,7 @@ private:
 		_vUser = _LoadFileContentToVectorForUser();
 
 		for (clsUser& C : _vUser) {
-			if (C.AccountNumber() == AccountNumber()) {
+			if (C.UserName() == UserName()) {
 
 				C = *this;
 				break;
@@ -155,7 +155,7 @@ public:
 		return (_Mode == enMode::EmptyMode);
 	}
 
-	string AccountNumber() {
+	string UserName() {
 		return _AccountNumber;
 	}
 
@@ -202,7 +202,7 @@ public:
 			_Update();
 			return enSaveClient::SussccesChanges;
 		case enMode::AddNew:
-			if (IsUserExist(AccountNumber())) {
+			if (IsUserExist(UserName())) {
 				return enSaveClient::FaildAddNewClientExists;
 			}
 
@@ -226,7 +226,7 @@ public:
 			while (getline(MyFile, Line)) {
 
 				clsUser User = _ConvertLineToRecordObjectForUser(Line);
-				if (User.AccountNumber() == AccounNumber) {
+				if (User.UserName() == AccounNumber) {
 					MyFile.close();
 					return User;
 				}
@@ -244,7 +244,7 @@ public:
 		_vUser = _LoadFileContentToVectorForUser();
 
 		for (clsUser& U : _vUser) {
-			if (U.AccountNumber() == AccountNumber()) {
+			if (U.UserName() == UserName()) {
 				U._MarkForDelete = true;
 				break;
 			}
@@ -259,7 +259,7 @@ public:
 
 	}
 
-	static clsUser FindUser(string AccounNumber, string Password) {
+	static clsUser FindUser(string UserName, string Password) {
 
 		fstream MyFile;
 
@@ -272,7 +272,7 @@ public:
 			while (getline(MyFile, Line)) {
 
 				clsUser User = _ConvertLineToRecordObjectForUser(Line);
-				if (User.AccountNumber() == AccounNumber && User.Password == Password) {
+				if (User.UserName() == UserName && User.Password == Password) {
 					MyFile.close();
 					return User;
 				}
@@ -285,15 +285,15 @@ public:
 		return _GetEmptyUserObject();
 	}
 
-	static bool IsUserExist(string AccountNumber) {
+	static bool IsUserExist(string UserName) {
 
-		clsUser Client = clsUser::FindUser(AccountNumber);
+		clsUser Client = clsUser::FindUser(UserName);
 		return (!Client.IsEmpty());
 
 	}
 
-	static clsUser GetAddNewUserObject(string AccountNumber) {
-		return clsUser(enMode::AddNew, "", "", "", "", AccountNumber, "", 0);
+	static clsUser GetAddNewUserObject(string UserName) {
+		return clsUser(enMode::AddNew, "", "", "", "", UserName, "", 0);
 	}
 
 	static vector <clsUser> GetUserList() {

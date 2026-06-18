@@ -145,6 +145,7 @@ private:
 public:
 	static void MainMenueScreen() {
 
+		system("cls");
 		_HedarScreen("Main Menue");
 
 		cout << clsUtil::Tabs(5) << "===============================================\n";

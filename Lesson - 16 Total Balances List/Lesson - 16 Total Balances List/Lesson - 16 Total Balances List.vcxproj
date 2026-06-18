@@ -123,11 +123,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="clsFindUserScreen.cpp" />
     <ClCompile Include="Lesson - 16 Total Balances List.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="clsAddNewUserScreen.h" />
     <ClInclude Include="clsDeleteUserScreen.h" />
+    <ClInclude Include="clsFindUserScreen.h" />
     <ClInclude Include="clsUpdateUserScreen.h" />
     <ClInclude Include="clsUser.h" />
     <ClInclude Include="clsUsersListScreen.h" />

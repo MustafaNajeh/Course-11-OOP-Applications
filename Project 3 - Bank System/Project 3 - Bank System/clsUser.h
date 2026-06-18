@@ -14,7 +14,7 @@ private:
 	enum enMode { EmptyMode = 0, UpdateMode = 1, AddNew = 2 };
 	enMode _Mode;
 
-	string _AccountNumber;
+	string _UserName;
 	string _Password;
 	int _Permissions;
 	bool _MarkForDelete = false;
@@ -131,11 +131,11 @@ private:
 
 public:
 	clsUser(enMode Mode, string FirstName, string LastName, string Email, string Phone
-		, string AccountNumber, string Password, int Permissions) :
+		, string UserName, string Password, int Permissions) :
 		clsPerson(FirstName, LastName, Email, Phone) {
 
 		_Mode = Mode;
-		_AccountNumber = AccountNumber;
+		_UserName = UserName;
 		_Password = Password;
 		_Permissions = Permissions;
 	}
@@ -156,8 +156,10 @@ public:
 	}
 
 	string UserName() {
-		return _AccountNumber;
+		return _UserName;
 	}
+
+
 
 	bool GetMarkForDelete() {
 		return _MarkForDelete;

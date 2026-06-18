@@ -11,7 +11,7 @@ class clsUsersListScreen : protected clsScreen
 	static void _PrintOneUser(clsUser& User) {
 
 
-		cout << clsUtil::Tabs(2) << "| " << setw(15) << left << User.AccountNumber();
+		cout << clsUtil::Tabs(2) << "| " << setw(15) << left << User.UserName();
 		cout << "| " << setw(10) << left << User.Password;
 		cout << "| " << setw(20) << left << User.FullName();
 		cout << "| " << setw(20) << left << User.Email;
@@ -30,7 +30,7 @@ public:
 		cout <<
 			"\n" << clsUtil::Tabs(2) <<"_______________________________________________________";
 		cout << "_____________________________________________\n" << endl;
-		cout << clsUtil::Tabs(2) << "| " << left << setw(15) << "Accout Number";
+		cout << clsUtil::Tabs(2) << "| " << left << setw(15) << "UserName";
 		cout << "| " << left << setw(10) << "Pin Code";
 		cout << "| " << left << setw(20) << "Client Name";
 		cout << "| " << left << setw(20) << "Email";

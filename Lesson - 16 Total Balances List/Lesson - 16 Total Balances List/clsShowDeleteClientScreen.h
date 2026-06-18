@@ -6,7 +6,7 @@ using namespace std;
 #include "clsInputValidate.h"
 #include "clsListClientScreen.h"
 #include "clsAddNewClient.h"
-
+//
 class clsShowDeleteClientScreen : protected clsScreen
 {
     static void _PrintClient(clsBankClient Client) {

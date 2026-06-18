@@ -11,7 +11,7 @@ class clsAddNewUserScreen : protected clsScreen
 
         cout << "\nInfo";
         cout << "\n______________________________";
-        cout << "\nAccountNumber  : " << User.AccountNumber();
+        cout << "\nAccountNumber  : " << User.UserName();
         cout << "\nPinCode        : " << User.Password;
         cout << "\nFirstName      : " << User.FirstName;
         cout << "\nLastName       : " << User.LastName;
@@ -131,18 +131,18 @@ public:
     static void  ShowAddNewClientScreen() {
         _HedarScreen("Add New User");
 
-        string AccountNumber = "";
+        string UserName = "";
         cout << "Please Enter Account Number\n";
-        AccountNumber = clsInputValidate::ReadString();
+        UserName = clsInputValidate::ReadString();
 
-        while (clsUser::IsUserExist(AccountNumber)) {
+        while (clsUser::IsUserExist(UserName)) {
 			
             cout << "Sory, your AccountNumber is Exsist enter Agin\n";
-            AccountNumber = clsInputValidate::ReadString();
+            UserName = clsInputValidate::ReadString();
 
         }
 
-		clsUser User = clsUser::GetAddNewUserObject(AccountNumber);
+		clsUser User = clsUser::GetAddNewUserObject(UserName);
 
 
         _ReadUserInfo(User);

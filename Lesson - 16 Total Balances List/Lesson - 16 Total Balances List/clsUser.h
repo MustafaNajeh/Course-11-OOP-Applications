@@ -140,6 +140,17 @@ public:
 		_Permissions = Permissions;
 	}
 
+	enum ePermission {
+		FullAccess = -1,
+		CanShowClientList = 1,
+		CanAddNewClient = 2,
+		CanDeleteClient = 4,
+		CanUpdateClient = 8,
+		CanFindClient = 16,
+		CanShowTransactionsMenue = 32,
+		CanMangeUsers = 64
+	};
+
 	bool IsEmpty() {
 		return (_Mode == enMode::EmptyMode);
 	}

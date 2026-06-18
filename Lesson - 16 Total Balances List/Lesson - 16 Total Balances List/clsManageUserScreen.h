@@ -4,7 +4,7 @@ using namespace std;
 #include "clsScreen.h"
 #include "clsInputValidate.h"
 #include "clsUsersListScreen.h"
-
+#include "clsAddNewUserScreen.h"
 class clsManageUserScreen : protected clsScreen
 {
 	enum enUesrsMenue {
@@ -39,8 +39,8 @@ class clsManageUserScreen : protected clsScreen
 
 	}
 	static void _ShowAddNewUserScreen() {
-		cout << "Show Add New User Screen Will be here ...\n";
-
+		//cout << "Show Add New User Screen Will be here ...\n";
+		clsAddNewUserScreen::ShowAddNewClientScreen();
 	}
 	static void _ShowUserDeleteScreen(){
 		cout << "Show User Delete Screen Will be here ...\n";

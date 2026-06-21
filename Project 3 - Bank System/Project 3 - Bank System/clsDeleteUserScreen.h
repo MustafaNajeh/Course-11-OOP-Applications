@@ -26,7 +26,7 @@ public:
 
 
 
-    static void ShowDeleteClientScreen() {
+    static void ShowDeleteUserScreen() {
 
         _HedarScreen("Delete User Screen");
         string AccountNumber = "";

@@ -9,6 +9,7 @@
 
 using namespace std;
 
+
 class clsUser : public clsPerson
 {
 private:
@@ -29,7 +30,6 @@ private:
 		return clsUser(enMode::UpdateMode, vUser[0], vUser[1], vUser[2], vUser[3], vUser[4], vUser[5], stod(vUser[6]));
 	}
 
-
 	static clsUser _GetEmptyUserObject() {
 		return clsUser(enMode::EmptyMode, "", "", "", "", "", "", 0);
 	}
@@ -47,6 +47,23 @@ private:
 		sRecord += to_string(User._Permissions);
 
 		return sRecord;
+
+	}
+
+	struct sLoginRegisterRecord;
+	static sLoginRegisterRecord _ConvertLineLogsToRecord(string Line,string delime= "//##//") {
+
+		sLoginRegisterRecord LoginRegiester;
+		vector <string> vLoginRegiester;
+		vLoginRegiester = clsString::Split(Line,delime);
+		
+		LoginRegiester.UserName = vLoginRegiester[0];
+		LoginRegiester.Password += vLoginRegiester[1];
+		LoginRegiester.Permissions +=  stoi(vLoginRegiester[2]);
+		LoginRegiester.DateTime += vLoginRegiester[3];
+
+
+		return LoginRegiester;
 
 	}
 
@@ -160,7 +177,16 @@ public:
 		CanUpdateClient = 8,
 		CanFindClient = 16,
 		CanShowTransactionsMenue = 32,
-		CanMangeUsers = 64
+		CanMangeUsers = 64,
+		CanShowLoginRegisters = 128
+	};
+
+	struct sLoginRegisterRecord {
+		string UserName;
+		string DateTime;
+		string Password;
+		int Permissions;
+
 	};
 
 	bool IsEmpty() {
@@ -344,9 +370,29 @@ public:
 	}
 
 
+	static vector <sLoginRegisterRecord> GetContatLoginRegisterRecord() {
+		vector <sLoginRegisterRecord> vLoginRegister;
+		fstream MyFile;
+
+		MyFile.open("LoginRegister.txt", ios::in);
+
+		if (MyFile.is_open()) {
+
+			string Line;
+
+			while (getline(MyFile, Line)) {
 
 
+				sLoginRegisterRecord User = _ConvertLineLogsToRecord(Line);
 
+				vLoginRegister.push_back(User);
+
+			}
+
+			MyFile.close();
+		}
+		return vLoginRegister;
+	}
 	
 };
 

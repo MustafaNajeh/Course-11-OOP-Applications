@@ -118,7 +118,12 @@ class clsUpdateUserScreen : protected clsScreen
 			if (toupper(AddPermissions) == 'Y') {
 				Permissions |= clsUser::ePermission::CanMangeUsers;
 			}
+			cout << "\nCan Show Login Registers ? y/n? ";
+			cin >> AddPermissions;
 
+			if (toupper(AddPermissions) == 'Y') {
+				Permissions |= clsUser::ePermission::CanShowLoginRegisters;
+			}
 		}
 
 		return Permissions;

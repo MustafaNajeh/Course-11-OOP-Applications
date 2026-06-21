@@ -5,6 +5,7 @@
 #include "clsString.h"
 #include <vector>
 #include <fstream>
+#include "clsDate.h"
 
 using namespace std;
 
@@ -28,6 +29,7 @@ private:
 		return clsUser(enMode::UpdateMode, vUser[0], vUser[1], vUser[2], vUser[3], vUser[4], vUser[5], stod(vUser[6]));
 	}
 
+
 	static clsUser _GetEmptyUserObject() {
 		return clsUser(enMode::EmptyMode, "", "", "", "", "", "", 0);
 	}
@@ -48,6 +50,16 @@ private:
 
 	}
 
+	 string _GetLogLine(string delim = "//##//") {
+		string Record;
+
+		Record = clsDate::GetSystemDateTime() + delim;
+		Record += _UserName + delim;
+		Record += Password + delim;
+		Record += to_string(Permissions);
+
+		return Record;
+	}
 	static vector <clsUser> _LoadFileContentToVectorForUser() {
 		vector <clsUser> vUser;
 		fstream MyFile;
@@ -158,8 +170,6 @@ public:
 	string UserName() {
 		return _UserName;
 	}
-
-
 
 	bool GetMarkForDelete() {
 		return _MarkForDelete;
@@ -318,6 +328,25 @@ public:
 			return false;
 		}
 	}
+
+	void LoginRegisters() {
+		string Line = _GetLogLine();
+		fstream MyFile;
+
+		MyFile.open("LoginRegister.txt", ios::out | ios::app);
+
+		if (MyFile.is_open()) {
+
+			MyFile << Line << endl;
+
+			MyFile.close();
+		}
+	}
+
+
+
+
+
 	
 };
 

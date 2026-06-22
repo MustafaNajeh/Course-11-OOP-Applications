@@ -322,6 +322,25 @@ public:
 	}
 
 
+	bool Transfer(float Amount, clsBankClient& DestenationClient) {
+
+		if (Amount > AccountBalance) {
+			return false;
+		}
+
+		Withdraw(Amount);
+		DestenationClient.Deposit(Amount);
+		return true;
+	}
+
+
+
+
+
+
+
+
+
 };
 
 

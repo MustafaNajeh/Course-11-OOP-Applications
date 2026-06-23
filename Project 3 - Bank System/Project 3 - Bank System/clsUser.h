@@ -58,9 +58,9 @@ private:
 		vLoginRegiester = clsString::Split(Line,delime);
 		
 		LoginRegiester.UserName = vLoginRegiester[0];
-		LoginRegiester.Password += vLoginRegiester[1];
-		LoginRegiester.Permissions +=  stoi(vLoginRegiester[2]);
-		LoginRegiester.DateTime += vLoginRegiester[3];
+		LoginRegiester.Password = vLoginRegiester[1];
+		LoginRegiester.Permissions =  stoi(vLoginRegiester[2]);
+		LoginRegiester.DateTime = vLoginRegiester[3];
 
 
 		return LoginRegiester;

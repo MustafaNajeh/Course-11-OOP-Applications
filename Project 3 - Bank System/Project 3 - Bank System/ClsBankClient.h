@@ -122,7 +122,25 @@ private:
 		return Record;
 	}
 
-	 void _AddLogsTrasfer( clsBankClient DestinationClient, float CurrentAmount) {
+	 struct sTransferLog;
+	 static sTransferLog _ConvertTrnsferLogToRecord(string Line,string Speritor = "//##//") {
+		 sTransferLog Record;
+		 vector <string> vLog;
+		 vLog = clsString::Split(Line,Speritor);
+
+		 Record.DateTime = vLog[0];
+		 Record.SourceAccount = vLog[1];
+		 Record.DestinationAccount = vLog[2];
+		 Record.Amount = stof(vLog[3]);
+		 Record.SourceBalance = stof(vLog[4]);
+		 Record.DestinationBalance = stof(vLog[5]);
+		 Record.User = vLog[6];
+
+		 return Record;
+
+	 }
+
+	void _AddLogsTrasfer( clsBankClient DestinationClient, float CurrentAmount) {
 		string Line = _GetLogLineTransfer( DestinationClient, CurrentAmount);
 		fstream MyFile;
 
@@ -135,7 +153,6 @@ private:
 			MyFile.close();
 		}
 	}
-
 
 	void _AddNew() {
 		_AddLinesToFiles(_ConvertRecordToLine(*this));
@@ -169,6 +186,20 @@ public:
 		_AccountBalance = AccountBalance;
 
 	}
+
+	struct sTransferLog {
+
+		string DateTime;
+		string SourceAccount;
+		string DestinationAccount;
+		float Amount;
+		float SourceBalance;
+		float DestinationBalance;
+		string User;
+
+	};
+
+	
 
 	bool IsEmpty() {
 		return (_Mode == enMode::EmptyMode);
@@ -364,9 +395,30 @@ public:
 	}
 
 
+	static vector <sTransferLog> LoadFileTransferLog() {
+		vector <sTransferLog> vLog;
+		fstream MyFile;
+
+		MyFile.open("LogsTrasfer.txt", ios::in);
+
+		if (MyFile.is_open()) {
+
+			string Line;
+
+			while (getline(MyFile, Line)) {
 
 
+				sTransferLog client = _ConvertTrnsferLogToRecord(Line);
 
+				vLog.push_back(client);
+
+			}
+
+			MyFile.close();
+		}
+		return vLog;
+
+	}
 
 
 

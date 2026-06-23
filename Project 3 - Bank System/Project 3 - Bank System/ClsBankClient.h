@@ -108,6 +108,35 @@ private:
 
 	}
 
+	 string _GetLogLineTransfer( clsBankClient DestinationClient, float CurrentAmount, string delim = "//##//") {
+		string Record;
+
+		Record = clsDate::GetSystemDateTime() + delim;
+		Record += AccountNumber() + delim;
+		Record += DestinationClient.AccountNumber() + delim;
+		Record += to_string(CurrentAmount) + delim;
+		Record += to_string(AccountBalance) + delim;
+		Record += to_string(DestinationClient.AccountBalance) + delim;
+		Record += CurrentObject.UserName();
+
+		return Record;
+	}
+
+	 void _AddLogsTrasfer( clsBankClient DestinationClient, float CurrentAmount) {
+		string Line = _GetLogLineTransfer( DestinationClient, CurrentAmount);
+		fstream MyFile;
+
+		MyFile.open("LogsTrasfer.txt", ios::out | ios::app);
+
+		if (MyFile.is_open()) {
+
+			MyFile << Line << endl;
+
+			MyFile.close();
+		}
+	}
+
+
 	void _AddNew() {
 		_AddLinesToFiles(_ConvertRecordToLine(*this));
 	}
@@ -330,6 +359,7 @@ public:
 
 		Withdraw(Amount);
 		DestenationClient.Deposit(Amount);
+		_AddLogsTrasfer(DestenationClient, Amount);
 		return true;
 	}
 

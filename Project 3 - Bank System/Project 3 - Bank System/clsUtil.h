@@ -99,7 +99,7 @@ public :
 		return false;
 	}
 
-	static string EncryptText(string Text, short EncryotionKey) {
+	static string EncryptText(string Text, short EncryotionKey=2) {
 
 		for (int i = 0; i < Text.length(); i++) {
 
@@ -110,7 +110,7 @@ public :
 		return Text;
 	}
 
-	static string DecryptText(string Text, short EncryotionKey) {
+	static string DecryptText(string Text, short EncryotionKey=2) {
 
 		for (int i = 0; i < Text.length(); i++) {
 

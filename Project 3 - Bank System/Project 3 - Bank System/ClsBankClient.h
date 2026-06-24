@@ -25,7 +25,7 @@ private:
 		vector <string> vClient;
 		vClient = clsString::Split(Line, Seperator);
 
-		return clsBankClient(enMode::UpdateMode, vClient[0], vClient[1], vClient[2], vClient[3], vClient[4], vClient[5], stod(vClient[6]));
+		return clsBankClient(enMode::UpdateMode, vClient[0], vClient[1], vClient[2], vClient[3], vClient[4], clsUtil::DecryptText(vClient[5]), stod(vClient[6]));
 	}
 
 	static clsBankClient _GetEmptyClientObject() {
@@ -41,7 +41,7 @@ private:
 		sRecord += Clint.Email + delim;
 		sRecord += Clint.Phone + delim;
 		sRecord += Clint.AccountNumber() + delim;
-		sRecord += Clint.PinCode + delim;
+		sRecord += clsUtil::EncryptText(Clint.PinCode) + delim;
 		sRecord += to_string(Clint.AccountBalance);
 
 		return sRecord;
@@ -130,7 +130,7 @@ private:
 
 		 Record.DateTime = vLog[0];
 		 Record.SourceAccount = vLog[1];
-		 Record.DestinationAccount = vLog[2];
+ 		 Record.DestinationAccount = vLog[2];
 		 Record.Amount = stof(vLog[3]);
 		 Record.SourceBalance = stof(vLog[4]);
 		 Record.DestinationBalance = stof(vLog[5]);
@@ -408,9 +408,9 @@ public:
 			while (getline(MyFile, Line)) {
 
 
-				sTransferLog client = _ConvertTrnsferLogToRecord(Line);
+				sTransferLog TransferLog = _ConvertTrnsferLogToRecord(Line);
 
-				vLog.push_back(client);
+				vLog.push_back(TransferLog);
 
 			}
 

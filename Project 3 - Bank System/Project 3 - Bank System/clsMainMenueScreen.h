@@ -158,7 +158,6 @@ private:
 
 public:
 	static void MainMenueScreen() {
-
 		system("cls");
 		_HedarScreen("Main Menue");
 

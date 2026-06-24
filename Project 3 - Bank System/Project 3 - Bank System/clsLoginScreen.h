@@ -5,6 +5,8 @@
 #include "clsScreen.h"
 #include "GlobalObject.h"
 using namespace std;
+
+
 class clsLoginScreen : protected clsScreen
 {
 	static bool _Login() {
@@ -36,7 +38,7 @@ class clsLoginScreen : protected clsScreen
 		} while (LoginFaild);
 		CurrentObject.LoginRegisters();
 		clsMainMenueScreen::MainMenueScreen();
-		//
+		
 		return true;
 
 	}

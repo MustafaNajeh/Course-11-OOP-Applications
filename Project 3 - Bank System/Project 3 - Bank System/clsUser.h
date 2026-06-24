@@ -6,7 +6,6 @@
 #include <vector>
 #include <fstream>
 #include "clsDate.h"
-
 using namespace std;
 
 
@@ -27,7 +26,7 @@ private:
 		vector <string> vUser;
 		vUser = clsString::Split(Line, Seperator);
 
-		return clsUser(enMode::UpdateMode, vUser[0], vUser[1], vUser[2], vUser[3], vUser[4], vUser[5], stod(vUser[6]));
+		return clsUser(enMode::UpdateMode, vUser[0], vUser[1], vUser[2], vUser[3], vUser[4], clsUtil::DecryptText (vUser[5]), stod(vUser[6]));
 	}
 
 	static clsUser _GetEmptyUserObject() {
@@ -43,13 +42,13 @@ private:
 		sRecord += User.Email + delim;
 		sRecord += User.Phone + delim;
 		sRecord += User.UserName() + delim;
-		sRecord += User.Password + delim;
+		sRecord += clsUtil::EncryptText( User.Password )+ delim;
 		sRecord += to_string(User._Permissions);
 
 		return sRecord;
 
 	}
-
+	
 	struct sLoginRegisterRecord;
 	static sLoginRegisterRecord _ConvertLineLogsToRecord(string Line,string delime= "//##//") {
 
@@ -58,7 +57,7 @@ private:
 		vLoginRegiester = clsString::Split(Line,delime);
 		
 		LoginRegiester.UserName = vLoginRegiester[0];
-		LoginRegiester.Password = vLoginRegiester[1];
+		LoginRegiester.Password = clsUtil::DecryptText(vLoginRegiester[1]);
 		LoginRegiester.Permissions =  stoi(vLoginRegiester[2]);
 		LoginRegiester.DateTime = vLoginRegiester[3];
 
@@ -72,7 +71,7 @@ private:
 
 		Record = clsDate::GetSystemDateTime() + delim;
 		Record += _UserName + delim;
-		Record += Password + delim;
+		Record += clsUtil::EncryptText(Password) + delim;
 		Record += to_string(Permissions);
 
 		return Record;
@@ -394,6 +393,9 @@ public:
 		return vLoginRegister;
 	}
 	
+	
+
+
 };
 
 

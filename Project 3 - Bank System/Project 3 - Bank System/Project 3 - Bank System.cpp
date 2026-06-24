@@ -17,25 +17,13 @@ static void _PrintOneCurrency(clsCurrency Currency) {
 
 int main() {
 
-	
-	clsCurrency Currency1 =	clsCurrency::FindCountry("iraq");
-	_PrintOneCurrency(Currency1);
-
-	clsCurrency Currency2 = clsCurrency::FindCurrencyCode("irr");
-	_PrintOneCurrency(Currency2);
-
-	Currency1.UpdateRate(1600);
-	_PrintOneCurrency(Currency1);
-
-
-
-	/*while (true) {
+	 while (true) {
 
 		if (!clsLoginScreen::ShowLoginScreen()) {
 			break;
 		}
 
-	}*/
+	}
 	system("pause>0");
 
 }

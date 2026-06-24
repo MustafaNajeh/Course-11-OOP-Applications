@@ -12,6 +12,7 @@
 #include "clsManageUserScreen.h"
 #include "GlobalObject.h"
 #include "clsShowLoginRegisterList.h"
+#include "clsShowCurrencyExchangeScreen.h"
 //#include "clsLoginScreen.h"
 using namespace std;
 
@@ -29,14 +30,15 @@ private:
 		Transactions = 6,
 		MangeUser = 7,
 		LoginRegister = 8,
-		LogOut = 9
+		CurrencyExchange = 9,
+		LogOut = 10
 
 	};
 
 	static short _ReadMainMenue() {
 		short Choice;
-		cout << clsUtil::Tabs(5) << "Chooes What Do you want to do ? [1 to 9]. ";
-		Choice = clsInputValidate::ReadShortNumberBetween(1, 9, "Please enter bettewn 1 and 9");
+		cout << clsUtil::Tabs(5) << "Chooes What Do you want to do ? [1 to 10]. ";
+		Choice = clsInputValidate::ReadShortNumberBetween(1, 10, "Please enter bettewn 1 and 10");
 		return Choice;
 	}
 
@@ -101,6 +103,12 @@ private:
 
 	}
 
+	static void _ShowCurrencyExchangeScreen() {
+
+		clsShowCurrencyExchangeScreen::ShowCurrencyExchangeScreen();
+
+	}
+
 	static void _PerformMainMenue(enMainMenue MainMenue) {
 
 		switch (MainMenue) {
@@ -145,6 +153,11 @@ private:
 			_LoginRegister();
 			_BackToMainMenueScreen();
 			break;
+		case enMainMenue::CurrencyExchange:
+			system("cls");
+			_ShowCurrencyExchangeScreen();
+			_BackToMainMenueScreen();
+			break;
 		case enMainMenue::LogOut:
 			system("cls");
 			_LoginOut();
@@ -172,7 +185,8 @@ public:
 		cout << clsUtil::Tabs(5) << "\t[6] Transactions.\n";
 		cout << clsUtil::Tabs(5) << "\t[7] Mange Users.\n";
 		cout << clsUtil::Tabs(5) << "\t[8] Login Register. \n";
-		cout << clsUtil::Tabs(5) << "\t[9] LogOut. \n";
+		cout << clsUtil::Tabs(5) << "\t[9] Currency Exchange. \n";
+		cout << clsUtil::Tabs(5) << "\t[10] LogOut. \n";
 		cout << clsUtil::Tabs(5) << "===============================================\n";
 
 		_PerformMainMenue(enMainMenue(_ReadMainMenue()));

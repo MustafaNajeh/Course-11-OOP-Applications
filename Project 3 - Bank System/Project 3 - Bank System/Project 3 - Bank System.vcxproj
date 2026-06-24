@@ -129,6 +129,7 @@
     <ClInclude Include="clsShowLoginRegisterList.h" />
     <ClInclude Include="clsShowTransferLogScreen.h" />
     <ClInclude Include="clsTransferScreen.h" />
+    <ClInclude Include="InterFaceCommunication.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

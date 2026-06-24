@@ -3,6 +3,7 @@
 #include "clsMainMenueScreen.h"
 #include "clsCurrency.h"
 #include "clsScreen.h"
+#include "clsCurreniesListScreen.h"
 using namespace std;
 
 class clsShowCurrencyExchangeScreen : protected clsScreen
@@ -24,7 +25,8 @@ class clsShowCurrencyExchangeScreen : protected clsScreen
 	}
 
 	static void _ListCurrencies() {
-		cout << "\n List Currencies Will be Here . . .\n";
+		//cout << "\n List Currencies Will be Here . . .\n";
+		clsCurreniesListScreen::ShowCurreniesListScreen();
 	}
 
 	static void _FindCurrency() {

@@ -206,7 +206,7 @@ public :
 	}
 
 	static vector<clsCurrency> GetListCurrency() {
-		_LoadFileContentCurrencyToVector();
+		return _LoadFileContentCurrencyToVector();
 	}
 
 };

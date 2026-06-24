@@ -126,6 +126,7 @@
     <ClCompile Include="Project 3 - Bank System.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="clsCurrency.h" />
     <ClInclude Include="clsShowLoginRegisterList.h" />
     <ClInclude Include="clsShowTransferLogScreen.h" />
     <ClInclude Include="clsTransferScreen.h" />

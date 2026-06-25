@@ -128,6 +128,7 @@
   <ItemGroup>
     <ClInclude Include="clsCurrency.h" />
     <ClInclude Include="clsCurreniesListScreen.h" />
+    <ClInclude Include="clsFindCurrencyScreen.h" />
     <ClInclude Include="clsShowCurrencyExchangeScreen.h" />
     <ClInclude Include="clsShowLoginRegisterList.h" />
     <ClInclude Include="clsShowTransferLogScreen.h" />

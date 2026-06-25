@@ -41,7 +41,7 @@ class clsTransferScreen : protected clsScreen
 		return Amount;
 	}
 
-	
+	//
 public:
 	static void ShowTransferScreen() {
 		_HedarScreen("Transfer Screen");

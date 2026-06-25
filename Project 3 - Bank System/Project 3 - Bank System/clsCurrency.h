@@ -117,8 +117,8 @@ public :
 
 	}
 
-	enMode IsEmpty() {
-		return (_Mode = enMode::EmpytMode);
+	bool IsEmpty() {
+		return (_Mode == enMode::EmpytMode);
 	}
 
 	string Country() {
@@ -198,7 +198,14 @@ public :
 		return _GetEmptyCurrencyObject();
 	}
 
-	static bool IsUserExist(string Country) {
+	static bool IsCurrencyExistByCurrencyCode(string CurrencyCode) {
+
+		clsCurrency Client = clsCurrency::FindCurrencyCode(CurrencyCode);
+		return (!Client.IsEmpty());
+
+	}
+
+	static bool IsCurrencyExistByCountry(string Country) {
 
 		clsCurrency Client = clsCurrency::FindCountry(Country);
 		return (!Client.IsEmpty());

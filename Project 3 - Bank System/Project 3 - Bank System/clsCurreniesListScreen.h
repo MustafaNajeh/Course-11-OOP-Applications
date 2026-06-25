@@ -35,7 +35,7 @@ public:
 		cout << "_______________________________________________\n" << endl;
 
 		if (vCurrency.size() == 0) {
-			cout << "sorry there are erroe in the system or the Client file are empty\n";
+			cout << "sorry there are erroe in the system or the Currencies file are empty\n";
 		}
 		else {
 			for (clsCurrency R : vCurrency)

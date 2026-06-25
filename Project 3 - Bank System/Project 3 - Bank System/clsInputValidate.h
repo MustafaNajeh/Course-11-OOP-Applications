@@ -33,6 +33,13 @@ public :
 
 	}
 
+	template <typename T>
+	static bool IsNumbeBetweenByTemplate(T Number , T From , T To) {
+
+		return (Number >= From && Number <= To);
+
+	}
+
 	static bool IsDateBetween(clsDate Date, clsDate DateFrom, clsDate DateTo) {
 
 		return (clsDate::IsDate1AfterDate2(Date, DateFrom) || clsDate::IsDate1EqualDate2(Date, DateFrom)) &&
@@ -110,6 +117,30 @@ public :
 		while (!IsNumberBetween(Number, From, To)) {
 			cout << Massge << endl;
 			Number = ReadDoubleNumber();
+		}
+
+		return Number;
+	}
+
+	template <typename T>
+	static T ReadNumber(string Massge = "Number is Not Valid ,Enter Agin") {
+		T Number = 0;
+
+		while ((!(cin >> Number))) {
+
+			cin.clear();
+			cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+			cout << Massge << endl;
+		}
+		return Number;
+	}
+
+	template <typename T>
+	static T ReadNumberBetween(T From, T To, string Massge = "Number is not with in range , try agin") {
+		T Number = ReadNumber<T>();
+		while (!IsNumberBetween(Number, From, To)) {
+			cout << Massge << endl;
+			Number = ReadIntNumber();
 		}
 
 		return Number;

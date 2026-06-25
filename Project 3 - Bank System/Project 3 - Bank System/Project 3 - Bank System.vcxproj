@@ -132,6 +132,7 @@
     <ClInclude Include="clsShowCurrencyExchangeScreen.h" />
     <ClInclude Include="clsShowLoginRegisterList.h" />
     <ClInclude Include="clsShowTransferLogScreen.h" />
+    <ClInclude Include="clsShowUpdateRateScreen.h" />
     <ClInclude Include="clsTransferScreen.h" />
     <ClInclude Include="InterFaceCommunication.h" />
   </ItemGroup>

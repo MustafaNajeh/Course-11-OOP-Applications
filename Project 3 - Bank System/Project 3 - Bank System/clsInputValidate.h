@@ -91,6 +91,19 @@ public :
 
 	}
 
+	static float ReadFloatNumber(string Massge = "Number is Not Valid ,Enter Agin") {
+		float Number = 0;
+
+		while ((!(cin >> Number))) {
+
+			cin.clear();
+			cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+			cout << Massge << endl;
+		}
+		return Number;
+
+	}
+
 	static double ReadDoubleNumberBetween(double From, double To, string Massge = "Number is not with in range , try agin") {
 		
 		double Number = ReadDoubleNumber();

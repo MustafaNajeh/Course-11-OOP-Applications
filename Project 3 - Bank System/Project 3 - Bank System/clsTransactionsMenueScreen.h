@@ -5,6 +5,8 @@
 #include "clsDepositScreen.h"
 #include "clsWithdrawScreen.h"
 #include "clsTotalBalancesScreen.h"
+#include "clsTransferScreen.h"
+#include "clsShowTransferLogScreen.h"
 using namespace std;
 
 
@@ -16,14 +18,16 @@ class clsTransactionsMenueScreen : protected clsScreen
 		Deposit = 1,
 		Withdraw = 2,
 		TotalBalance = 3,
-		MainMenue = 4
+		Transfer = 4,
+		TransferLog = 5,
+		MainMenue = 6
 
 	};
 
 	static short _ReadTransationsMenue() {
 		short Choice;
-		cout << clsUtil::Tabs(5) << "Chooes What Do you want to do ? [1 to 4]. ";
-		Choice = clsInputValidate::ReadShortNumberBetween(1, 4, "Please enter bettewn 1 and 4");
+		cout << clsUtil::Tabs(5) << "Chooes What Do you want to do ? [1 to 6]. ";
+		Choice = clsInputValidate::ReadShortNumberBetween(1, 6, "Please enter bettewn 1 and 6");
 		return Choice;
 	}
 
@@ -52,6 +56,17 @@ class clsTransactionsMenueScreen : protected clsScreen
 
 	}
 
+	static void _showTransferScreen() {
+		clsTransferScreen::ShowTransferScreen();
+
+	}
+
+	static void _ShowTransferLogScreen() {
+
+		clsShowTransferLogScreen::ShowTransferLogScreen();
+
+	}
+
 	static void _PerformTransactionsMenue(enTransactionsMenue TransactionsMenue) {
 
 		switch (TransactionsMenue)
@@ -74,7 +89,16 @@ class clsTransactionsMenueScreen : protected clsScreen
 			_ShowListAndTotalBalances();
 			_BackToTransactionMenue();
 			break;
-
+		case enTransactionsMenue::Transfer:
+			system("cls");
+			_showTransferScreen();
+			_BackToTransactionMenue();
+			break;
+		case enTransactionsMenue::TransferLog:
+			system("cls");
+			_ShowTransferLogScreen();
+			_BackToTransactionMenue();
+			break;
 		case enTransactionsMenue::MainMenue:
 
 			break;
@@ -99,7 +123,9 @@ public:
 		cout << clsUtil::Tabs(5) << "\t[1] Deposit. \n";
 		cout << clsUtil::Tabs(5) << "\t[2] WithDraw. \n";
 		cout << clsUtil::Tabs(5) << "\t[3] Total Balance. \n";
-		cout << clsUtil::Tabs(5) << "\t[4] Main Menue. \n";
+		cout << clsUtil::Tabs(5) << "\t[4] Transfer. \n";
+		cout << clsUtil::Tabs(5) << "\t[5] Transfer Log. \n";
+		cout << clsUtil::Tabs(5) << "\t[6] Main Menue. \n";
 		cout << clsUtil::Tabs(5) << "===============================================\n";
 
 		_PerformTransactionsMenue(enTransactionsMenue(_ReadTransationsMenue()));

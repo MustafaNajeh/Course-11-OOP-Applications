@@ -5,8 +5,9 @@
 #include "clsString.h"
 #include <vector>
 #include <fstream>
-
+#include "clsDate.h"
 using namespace std;
+
 
 class clsUser : public clsPerson
 {
@@ -14,7 +15,7 @@ private:
 	enum enMode { EmptyMode = 0, UpdateMode = 1, AddNew = 2 };
 	enMode _Mode;
 
-	string _AccountNumber;
+	string _UserName;
 	string _Password;
 	int _Permissions;
 	bool _MarkForDelete = false;
@@ -25,7 +26,7 @@ private:
 		vector <string> vUser;
 		vUser = clsString::Split(Line, Seperator);
 
-		return clsUser(enMode::UpdateMode, vUser[0], vUser[1], vUser[2], vUser[3], vUser[4], vUser[5], stod(vUser[6]));
+		return clsUser(enMode::UpdateMode, vUser[0], vUser[1], vUser[2], vUser[3], vUser[4], clsUtil::DecryptText (vUser[5]), stod(vUser[6]));
 	}
 
 	static clsUser _GetEmptyUserObject() {
@@ -41,13 +42,40 @@ private:
 		sRecord += User.Email + delim;
 		sRecord += User.Phone + delim;
 		sRecord += User.UserName() + delim;
-		sRecord += User.Password + delim;
+		sRecord += clsUtil::EncryptText( User.Password )+ delim;
 		sRecord += to_string(User._Permissions);
 
 		return sRecord;
 
 	}
+	
+	struct sLoginRegisterRecord;
+	static sLoginRegisterRecord _ConvertLineLogsToRecord(string Line,string delime= "//##//") {
 
+		sLoginRegisterRecord LoginRegiester;
+		vector <string> vLoginRegiester;
+		vLoginRegiester = clsString::Split(Line,delime);
+		
+		LoginRegiester.UserName = vLoginRegiester[0];
+		LoginRegiester.Password = clsUtil::DecryptText(vLoginRegiester[1]);
+		LoginRegiester.Permissions =  stoi(vLoginRegiester[2]);
+		LoginRegiester.DateTime = vLoginRegiester[3];
+
+
+		return LoginRegiester;
+
+	}
+
+	 string _GetLogLine(string delim = "//##//") {
+		string Record;
+
+		Record = clsDate::GetSystemDateTime() + delim;
+		Record += _UserName + delim;
+		Record += clsUtil::EncryptText(Password) + delim;
+		Record += to_string(Permissions);
+
+		return Record;
+	}
 	static vector <clsUser> _LoadFileContentToVectorForUser() {
 		vector <clsUser> vUser;
 		fstream MyFile;
@@ -131,11 +159,11 @@ private:
 
 public:
 	clsUser(enMode Mode, string FirstName, string LastName, string Email, string Phone
-		, string AccountNumber, string Password, int Permissions) :
+		, string UserName, string Password, int Permissions) :
 		clsPerson(FirstName, LastName, Email, Phone) {
 
 		_Mode = Mode;
-		_AccountNumber = AccountNumber;
+		_UserName = UserName;
 		_Password = Password;
 		_Permissions = Permissions;
 	}
@@ -148,7 +176,16 @@ public:
 		CanUpdateClient = 8,
 		CanFindClient = 16,
 		CanShowTransactionsMenue = 32,
-		CanMangeUsers = 64
+		CanMangeUsers = 64,
+		CanShowLoginRegisters = 128
+	};
+
+	struct sLoginRegisterRecord {
+		string UserName;
+		string DateTime;
+		string Password;
+		int Permissions;
+
 	};
 
 	bool IsEmpty() {
@@ -156,7 +193,7 @@ public:
 	}
 
 	string UserName() {
-		return _AccountNumber;
+		return _UserName;
 	}
 
 	bool GetMarkForDelete() {
@@ -316,7 +353,49 @@ public:
 			return false;
 		}
 	}
+
+	void LoginRegisters() {
+		string Line = _GetLogLine();
+		fstream MyFile;
+
+		MyFile.open("LoginRegister.txt", ios::out | ios::app);
+
+		if (MyFile.is_open()) {
+
+			MyFile << Line << endl;
+
+			MyFile.close();
+		}
+	}
+
+
+	static vector <sLoginRegisterRecord> GetContatLoginRegisterRecord() {
+		vector <sLoginRegisterRecord> vLoginRegister;
+		fstream MyFile;
+
+		MyFile.open("LoginRegister.txt", ios::in);
+
+		if (MyFile.is_open()) {
+
+			string Line;
+
+			while (getline(MyFile, Line)) {
+
+
+				sLoginRegisterRecord User = _ConvertLineLogsToRecord(Line);
+
+				vLoginRegister.push_back(User);
+
+			}
+
+			MyFile.close();
+		}
+		return vLoginRegister;
+	}
 	
+	
+
+
 };
 
 

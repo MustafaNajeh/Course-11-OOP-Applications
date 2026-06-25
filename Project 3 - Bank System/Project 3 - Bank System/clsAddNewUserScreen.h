@@ -120,6 +120,13 @@ class clsAddNewUserScreen : protected clsScreen
 				Permissions |= clsUser::ePermission::CanMangeUsers;
 			}
 
+			cout << "\nCan Show Login Registers ? y/n? ";
+			cin >> AddPermissions;
+
+			if (toupper(AddPermissions) == 'Y') {
+				Permissions |= clsUser::ePermission::CanShowLoginRegisters;
+			}
+
 		}
 
 		return Permissions;
@@ -128,7 +135,7 @@ class clsAddNewUserScreen : protected clsScreen
 
 public:
  
-    static void  ShowAddNewClientScreen() {
+    static void  ShowAddNewUserScreen() {
         _HedarScreen("Add New User");
 
         string UserName = "";

@@ -11,6 +11,8 @@
 #include "clsTransactionsMenueScreen.h"
 #include "clsManageUserScreen.h"
 #include "GlobalObject.h"
+#include "clsShowLoginRegisterList.h"
+#include "clsShowCurrencyExchangeScreen.h"
 //#include "clsLoginScreen.h"
 using namespace std;
 
@@ -27,14 +29,16 @@ private:
 		FindClient = 5,
 		Transactions = 6,
 		MangeUser = 7,
-		LogOut = 8
+		LoginRegister = 8,
+		CurrencyExchange = 9,
+		LogOut = 10
 
 	};
 
 	static short _ReadMainMenue() {
 		short Choice;
-		cout << clsUtil::Tabs(5) << "Chooes What Do you want to do ? [1 to 8]. ";
-		Choice = clsInputValidate::ReadShortNumberBetween(1, 8, "Please enter bettewn 1 and 8");
+		cout << clsUtil::Tabs(5) << "Chooes What Do you want to do ? [1 to 10]. ";
+		Choice = clsInputValidate::ReadShortNumberBetween(1, 10, "Please enter bettewn 1 and 10");
 		return Choice;
 	}
 
@@ -93,7 +97,17 @@ private:
 
 	}
 
+	static void _LoginRegister() {
 
+		clsShowLoginRegisterList::ShowLoginRegisterList();
+
+	}
+
+	static void _ShowCurrencyExchangeScreen() {
+
+		clsShowCurrencyExchangeScreen::ShowCurrencyExchangeScreen();
+
+	}
 
 	static void _PerformMainMenue(enMainMenue MainMenue) {
 
@@ -134,6 +148,16 @@ private:
 			_ShowUserMenueScreen();
 			_BackToMainMenueScreen();
 			break;
+		case enMainMenue::LoginRegister:
+			system("cls");
+			_LoginRegister();
+			_BackToMainMenueScreen();
+			break;
+		case enMainMenue::CurrencyExchange:
+			system("cls");
+			_ShowCurrencyExchangeScreen();
+			_BackToMainMenueScreen();
+			break;
 		case enMainMenue::LogOut:
 			system("cls");
 			_LoginOut();
@@ -147,7 +171,6 @@ private:
 
 public:
 	static void MainMenueScreen() {
-
 		system("cls");
 		_HedarScreen("Main Menue");
 
@@ -161,8 +184,11 @@ public:
 		cout << clsUtil::Tabs(5) << "\t[5] Find Client. \n";
 		cout << clsUtil::Tabs(5) << "\t[6] Transactions.\n";
 		cout << clsUtil::Tabs(5) << "\t[7] Mange Users.\n";
-		cout << clsUtil::Tabs(5) << "\t[8] LogOut. \n";
+		cout << clsUtil::Tabs(5) << "\t[8] Login Register. \n";
+		cout << clsUtil::Tabs(5) << "\t[9] Currency Exchange. \n";
+		cout << clsUtil::Tabs(5) << "\t[10] LogOut. \n";
 		cout << clsUtil::Tabs(5) << "===============================================\n";
+
 		_PerformMainMenue(enMainMenue(_ReadMainMenue()));
 	}
 

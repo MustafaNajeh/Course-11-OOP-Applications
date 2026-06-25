@@ -21,8 +21,8 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{d61a63c1-2590-4645-9685-1470591a3c81}</ProjectGuid>
-    <RootNamespace>Lesson16TotalBalancesList</RootNamespace>
+    <ProjectGuid>{a15d4d0b-8b70-420c-b4cd-b1916ef4b7fb}</ProjectGuid>
+    <RootNamespace>TemplateFucntions</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -123,17 +123,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Lesson - 16 Total Balances List.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="clsAddNewUserScreen.h" />
-    <ClInclude Include="clsDeleteUserScreen.h" />
-    <ClInclude Include="clsFindUserScreen.h" />
-    <ClInclude Include="clsLoginScreen.h" />
-    <ClInclude Include="clsUpdateUserScreen.h" />
-    <ClInclude Include="clsUser.h" />
-    <ClInclude Include="clsUsersListScreen.h" />
-    <ClInclude Include="GlobalObject.h" />
+    <ClCompile Include="Template Fucntions.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

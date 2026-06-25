@@ -43,11 +43,12 @@ class clsManageUserScreen : protected clsScreen
 	}
 	static void _ShowAddNewUserScreen() {
 		//cout << "Show Add New User Screen Will be here ...\n";
-		clsAddNewUserScreen::ShowAddNewClientScreen();
+		clsAddNewUserScreen::ShowAddNewUserScreen();
+		//
 	}
 	static void _ShowUserDeleteScreen(){
 		//cout << "Show User Delete Screen Will be here ...\n";
-		clsDeleteUserScreen::ShowDeleteClientScreen();
+		clsDeleteUserScreen::ShowDeleteUserScreen();
 	}
 	static void _ShowUpdateUserScreen() {
 		//cout << "Show User Update Screen Will be here ...\n";

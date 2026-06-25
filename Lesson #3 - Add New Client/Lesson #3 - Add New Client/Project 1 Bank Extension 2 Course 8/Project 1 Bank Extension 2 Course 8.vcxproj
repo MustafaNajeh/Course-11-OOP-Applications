@@ -21,8 +21,8 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{d61a63c1-2590-4645-9685-1470591a3c81}</ProjectGuid>
-    <RootNamespace>Lesson16TotalBalancesList</RootNamespace>
+    <ProjectGuid>{432b1718-2b4e-40c7-b85f-a63f6b91026b}</ProjectGuid>
+    <RootNamespace>Project1BankExtension2Course8</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -123,17 +123,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Lesson - 16 Total Balances List.cpp" />
+    <ClCompile Include="Project 1 Bank Extension 2 Course 8.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="clsAddNewUserScreen.h" />
-    <ClInclude Include="clsDeleteUserScreen.h" />
-    <ClInclude Include="clsFindUserScreen.h" />
-    <ClInclude Include="clsLoginScreen.h" />
-    <ClInclude Include="clsUpdateUserScreen.h" />
-    <ClInclude Include="clsUser.h" />
-    <ClInclude Include="clsUsersListScreen.h" />
-    <ClInclude Include="GlobalObject.h" />
+    <ClInclude Include="DateLib.h" />
+    <ClInclude Include="MyString.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

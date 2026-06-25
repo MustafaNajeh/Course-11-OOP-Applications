@@ -17,8 +17,6 @@ class clsShowUpdateRateScreen : protected clsScreen
 
 	}
 
-	
-
 	static string _ReadCurrencyCode() {
 		cout << "\nPlease Enter Currency Code : ";
 		string Currency = clsInputValidate::ReadString();
@@ -32,7 +30,7 @@ public :
 
 		while (!clsCurrency::IsCurrencyExistByCurrencyCode(CurrencyCode)) {
 			cout << "\nCurrency is Not Exist Enter Anouther";
-			string CurrencyCode = _ReadCurrencyCode();
+			CurrencyCode = _ReadCurrencyCode();
 		}
 
 		clsCurrency CurrencyRate = clsCurrency::FindCurrencyCode(CurrencyCode);

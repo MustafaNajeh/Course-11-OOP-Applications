@@ -216,5 +216,24 @@ public :
 		return _LoadFileContentCurrencyToVector();
 	}
 
+	float ConvertToUSD(float Amount) {
+		return float(Amount / Rate());
+	}
+
+	float ConvertToAnoutherCurrency(float Amount, clsCurrency Currency2) {
+
+		float FirstConvert = ConvertToUSD(Amount);
+		if (Currency2.CurrencyCode() == "USD") {
+			return FirstConvert;
+		}
+
+		return float (FirstConvert * Currency2.Rate());
+
+	}
+
+
+
+
+
 };
 
